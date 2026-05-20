@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hong-Kun Lin | AI Engineer Resume</title>
+  <style>
+    :root {
+      --primary: #1a1a2e;
+      --accent: #4f8ef7;
+      --accent2: #00c9a7;
+      --bg: #f7f9fc;
+      --card: #ffffff;
+      --text: #2d2d2d;
+      --muted: #6c757d;
+      --border: #e3e8f0;
+      --tag-bg: #e8f0fe;
+      --tag-color: #3367d6;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, #16213e 60%, #0f3460 100%);
+      color: #fff;
+      padding: 60px 40px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 70% 40%, rgba(79,142,247,.18) 0%, transparent 60%);
+    }
+    .hero-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.4rem; font-weight: 700;
+      color: #fff;
+      margin: 0 auto 20px;
+      border: 3px solid rgba(255,255,255,.3);
+      position: relative; z-index: 1;
+    }
+    .hero h1 { font-size: 2.4rem; font-weight: 700; letter-spacing: .02em; position: relative; z-index: 1; }
+    .hero .en-name { font-size: 1.1rem; color: rgba(255,255,255,.7); margin: 4px 0 8px; position: relative; z-index: 1; }
+    .hero .tagline {
+      font-size: .95rem; color: var(--accent2); font-style: italic;
+      margin-bottom: 18px; position: relative; z-index: 1;
+    }
+    .hero-meta {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 12px 24px; font-size: .9rem; color: rgba(255,255,255,.82);
+      position: relative; z-index: 1;
+    }
+    .hero-meta span { display: flex; align-items: center; gap: 6px; }
+    .hero-meta a { color: var(--accent2); text-decoration: none; }
+    .hero-meta a:hover { text-decoration: underline; }
+
+    .hero-badges {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 8px; margin-top: 20px; position: relative; z-index: 1;
+    }
+    .badge {
+      background: rgba(79,142,247,.22); border: 1px solid rgba(79,142,247,.4);
+      color: #c8d8ff; border-radius: 20px; padding: 4px 14px; font-size: .82rem;
+    }
+
+    /* ── Layout ── */
+    .container { max-width: 960px; margin: 0 auto; padding: 32px 20px; }
+    .grid { display: grid; grid-template-columns: 1fr 2fr; gap: 28px; }
+
+    /* ── Section ── */
+    .section { margin-bottom: 28px; }
+    .section-title {
+      font-size: 1rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--accent);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 6px; margin-bottom: 16px;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--card); border-radius: 12px;
+      padding: 20px 24px; box-shadow: 0 2px 12px rgba(0,0,0,.06);
+      margin-bottom: 16px;
+    }
+
+    /* ── Timeline ── */
+    .timeline-item { padding-left: 18px; border-left: 2px solid var(--accent); margin-bottom: 16px; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-title { font-weight: 700; font-size: 1rem; }
+    .timeline-sub { color: var(--muted); font-size: .88rem; margin: 2px 0 4px; }
+    .timeline-date {
+      display: inline-block; font-size: .8rem;
+      background: var(--tag-bg); color: var(--tag-color);
+      padding: 2px 10px; border-radius: 10px; margin-bottom: 6px;
+    }
+
+    /* ── Tags ── */
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .tag {
+      background: var(--tag-bg); color: var(--tag-color);
+      border-radius: 6px; padding: 3px 10px; font-size: .8rem; font-weight: 500;
+    }
+    .tag.green { background: #e6f9f5; color: #0a7c60; }
+    .tag.orange { background: #fff3e0; color: #e65100; }
+
+    /* ── Skill bars ── */
+    .skill-row { margin-bottom: 10px; }
+    .skill-label { font-size: .88rem; font-weight: 600; margin-bottom: 4px; display: flex; justify-content: space-between; }
+    .skill-bar { background: var(--border); border-radius: 4px; height: 6px; }
+    .skill-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+
+    /* ── Achievement ── */
+    .achievement { display: flex; gap: 14px; margin-bottom: 16px; align-items: flex-start; }
+    .ach-icon {
+      width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+    }
+    .ach-icon.gold { background: #fff8e1; }
+    .ach-icon.blue { background: #e3f2fd; }
+    .ach-icon.teal { background: #e0f7fa; }
+    .ach-body .ach-title { font-weight: 700; font-size: .95rem; }
+    .ach-body .ach-sub { color: var(--muted); font-size: .82rem; margin: 2px 0; }
+    .award-badge {
+      display: inline-block; background: linear-gradient(90deg,#f9a825,#f57f17);
+      color: #fff; font-size: .75rem; font-weight: 700;
+      padding: 2px 10px; border-radius: 10px; margin-top: 4px;
+    }
+
+    /* ── Project card ── */
+    .project-card {
+      background: var(--card); border-radius: 12px;
+      padding: 18px 20px; box-shadow: 0 2px 12px rgba(0,0,0,.06);
+      margin-bottom: 14px; border-left: 4px solid var(--accent);
+    }
+    .project-card.teal { border-left-color: var(--accent2); }
+    .project-title { font-weight: 700; font-size: .97rem; }
+    .project-desc { font-size: .88rem; color: var(--muted); margin: 6px 0; line-height: 1.5; }
+    .project-link { font-size: .82rem; color: var(--accent); text-decoration: none; }
+    .project-link:hover { text-decoration: underline; }
+
+    /* ── Lang/Cert ── */
+    .lang-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .lang-name { font-weight: 600; font-size: .9rem; }
+    .lang-dots { display: flex; gap: 4px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); }
+    .dot.fill { background: var(--accent); }
+
+    /* ── Summary box ── */
+    .summary {
+      background: linear-gradient(135deg,#eef3ff,#f0fff8);
+      border-radius: 12px; padding: 20px 24px;
+      font-size: .93rem; line-height: 1.75;
+      border: 1px solid var(--border); margin-bottom: 28px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 680px) {
+      .grid { grid-template-columns: 1fr; }
+      .hero { padding: 40px 20px 36px; }
+      .hero h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<header class="hero">
+  <div class="hero-avatar">林</div>
+  <h1>林汯錕</h1>
+  <div class="en-name">Hong-Kun Lin</div>
+  <div class="tagline">"Move Fast and Break Things"</div>
+  <div class="hero-meta">
+    <span>📧 <a href="mailto:windspeak122@gmail.com">windspeak122@gmail.com</a></span>
+    <span>📱 0979-257-668</span>
+    <span>📍 高雄市鳳山區</span>
+    <span>🎓 陽明交通大學 生醫工程所 碩士</span>
+    <span>💻 <a href="https://github.com/BMS410Wind" target="_blank">GitHub: BMS410Wind</a></span>
+  </div>
+  <div class="hero-badges">
+    <span class="badge">AI Engineer</span>
+    <span class="badge">Deep Learning</span>
+    <span class="badge">LLM / RAG</span>
+    <span class="badge">Computer Vision</span>
+    <span class="badge">Model Optimization</span>
+    <span class="badge">Microsoft AI-900</span>
+  </div>
+</header>
+
+<!-- ═══ MAIN ═══ -->
+<main class="container">
+
+  <!-- Summary -->
+  <div class="summary">
+    畢業於陽明交通大學生醫工程研究所，碩論為<strong>神經網路結構搜尋最佳化應用於超音波脂肪肝檢測</strong>，
+    使用具強化學習能力的 NAS 技術最佳化模型架構，成功<strong>降低約 70% 參數量</strong>並透過統計分析顯著提升分類效能。
+    熟悉深度學習模型開發、LLM / RAG 系統建置與 MLOps 流程，具備豐富跨域合作與競賽經驗。
+  </div>
+
+  <div class="grid">
+
+    <!-- ══ LEFT COLUMN ══ -->
+    <aside>
+
+      <!-- Education -->
+      <div class="section">
+        <div class="section-title">學歷</div>
+        <div class="card" style="padding:16px 20px;">
+          <div class="timeline-item">
+            <div class="timeline-date">2022/9 – 2025/2</div>
+            <div class="timeline-title">國立陽明交通大學</div>
+            <div class="timeline-sub">生醫工程研究所 · 碩士</div>
+          </div>
+          <div class="timeline-item" style="margin-top:14px;">
+            <div class="timeline-date">2018/9 – 2022/6</div>
+            <div class="timeline-title">國立聯合大學</div>
+            <div class="timeline-sub">電機工程學系 · 學士</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div class="section">
+        <div class="section-title">技術能力</div>
+        <div class="card">
+          <div class="skill-row">
+            <div class="skill-label"><span>Python / PyTorch</span><span>95%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-label"><span>Deep Learning / CV</span><span>90%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-label"><span>LLM / RAG</span><span>80%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-label"><span>Linux / Docker</span><span>75%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-label"><span>Git / MLOps</span><span>80%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tools -->
+      <div class="section">
+        <div class="section-title">工具 & 框架</div>
+        <div class="card">
+          <div class="tags">
+            <span class="tag">PyTorch</span>
+            <span class="tag">TensorFlow</span>
+            <span class="tag">OpenCV</span>
+            <span class="tag">Hugging Face</span>
+            <span class="tag">Ollama</span>
+            <span class="tag">vLLM</span>
+            <span class="tag">n8n</span>
+            <span class="tag">Roboflow</span>
+            <span class="tag green">Docker</span>
+            <span class="tag green">Linux</span>
+            <span class="tag green">Git / GitHub</span>
+            <span class="tag green">Conda</span>
+            <span class="tag orange">Azure</span>
+            <span class="tag orange">RAG</span>
+            <span class="tag orange">Prompt Eng.</span>
+            <span class="tag orange">MCP</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Language -->
+      <div class="section">
+        <div class="section-title">語言能力</div>
+        <div class="card">
+          <div class="lang-row">
+            <span class="lang-name">中文</span>
+            <div class="lang-dots">
+              <div class="dot fill"></div><div class="dot fill"></div>
+              <div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div>
+            </div>
+          </div>
+          <div class="lang-row">
+            <span class="lang-name">English</span>
+            <div class="lang-dots">
+              <div class="dot fill"></div><div class="dot fill"></div>
+              <div class="dot fill"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certifications -->
+      <div class="section">
+        <div class="section-title">證照</div>
+        <div class="card">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span style="font-size:2rem;">🏅</span>
+            <div>
+              <div style="font-weight:700;font-size:.95rem;">Microsoft AI-900</div>
+              <div style="color:var(--muted);font-size:.83rem;">Azure AI Fundamentals</div>
+              <div style="color:var(--muted);font-size:.83rem;">取得日期：2025/12/30</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Job Preference -->
+      <div class="section">
+        <div class="section-title">求職意向</div>
+        <div class="card" style="font-size:.88rem;line-height:1.9;">
+          <div>🎯 <strong>目標職稱</strong>：AI 工程師</div>
+          <div>📌 <strong>希望職類</strong>：演算法工程師、資料工程師、資料科學家</div>
+          <div>📍 <strong>希望地點</strong>：苗栗縣、新竹縣市、台北市</div>
+          <div>💼 <strong>工作性質</strong>：全職</div>
+          <div>📅 <strong>可上班日</strong>：錄取後一週內</div>
+          <div>💰 <strong>希望待遇</strong>：面議</div>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- ══ RIGHT COLUMN ══ -->
+    <section>
+
+      <!-- About (English) -->
+      <div class="section">
+        <div class="section-title">About Me</div>
+        <div class="card" style="font-size:.92rem;line-height:1.8;color:#444;">
+          <p>M.S. graduate from the Institute of Intelligent Bioelectrical Engineering, NYCU.
+          My thesis focused on <strong>Neural Architecture Search (NAS)</strong> for ultrasound fatty liver detection —
+          leveraging reinforcement learning to optimize model architecture, achieving a
+          <strong>70% parameter reduction</strong> while significantly improving classification performance.</p>
+          <br/>
+          <p>Experienced in <strong>LLM / RAG system development</strong>, multi-agent architecture, medical image analysis,
+          and MLOps pipelines. I enjoy stepping outside my comfort zone, collaborating with interdisciplinary teams,
+          and solving real-world problems with AI.</p>
+        </div>
+      </div>
+
+      <!-- Achievements -->
+      <div class="section">
+        <div class="section-title">研究獎項</div>
+
+        <div class="achievement">
+          <div class="ach-icon gold">🏆</div>
+          <div class="ach-body">
+            <div class="ach-title">2024 醫工年會（國際研討會）</div>
+            <div class="ach-sub">基於 NASRL 構建最佳化超參數之早期脂肪肝檢測模型 · 第一作者</div>
+            <div class="ach-sub">使用 NAS + 強化學習，降低 70% 參數量並提升診斷效能</div>
+            <span class="award-badge">🥇 Excellent Award in Best Oral Competition</span>
+          </div>
+        </div>
+
+        <div class="achievement">
+          <div class="ach-icon gold">🏅</div>
+          <div class="ach-body">
+            <div class="ach-title">ICBHI 2024（國際研討會 & 競賽）</div>
+            <div class="ach-sub">情緒辨識 — PPG、RSEP、fMRI 信號分析 · 第一作者 & 共同作者</div>
+            <div class="ach-sub">Dual CNN-LSTM / Channel Attention Mechanism</div>
+            <span class="award-badge">🥈 Honorable Mention Award</span>
+          </div>
+        </div>
+
+        <div class="achievement">
+          <div class="ach-icon blue">📄</div>
+          <div class="ach-body">
+            <div class="ach-title">IEEE IUS 2024（國際研討會）</div>
+            <div class="ach-sub">腕隧道症候群 — 超音波正中神經分割與分類 · 第一作者</div>
+            <div class="ach-sub">Mask R-CNN + CBAM、Bias Field Correction、Multi-Frame Concat.</div>
+          </div>
+        </div>
+
+        <div class="achievement">
+          <div class="ach-icon teal">🎓</div>
+          <div class="ach-body">
+            <div class="ach-title">大學專題競賽（聯合大學）</div>
+            <div class="ach-sub">深度學習影像辨識應用於顯微鏡影像診斷多發性骨髓瘤</div>
+            <span class="award-badge" style="background:linear-gradient(90deg,#43a047,#1b5e20);">🥇 軟體組 第一名</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured Projects -->
+      <div class="section">
+        <div class="section-title">精選專案</div>
+
+        <div class="project-card teal">
+          <div class="project-title">旅遊行程規劃助手</div>
+          <div class="project-desc">
+            整合 LINE、Google 日曆、Google Maps、OpenWeather、Gmail 與多個 AI Agent，
+            透過 RAG 機制實現自動化行程規劃、天氣查詢、記帳、路線規劃與知識庫定期更新。
+          </div>
+          <div class="tags" style="margin-bottom:8px;">
+            <span class="tag green">n8n</span><span class="tag green">RAG</span>
+            <span class="tag green">LLM</span><span class="tag green">Multi-Agent</span>
+          </div>
+          <a class="project-link" href="https://github.com/BMS410Wind/n8n-tools" target="_blank">
+            🔗 github.com/BMS410Wind/n8n-tools
+          </a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-title">2025 AI CUP — 電腦斷層心臟肌肉影像分割</div>
+          <div class="project-desc">
+            使用 Vibe Coding 建立多 AI Agent 架構（Preprocessing / Segmentation / Postprocessing / Reporting），
+            建立半自動化競賽流程，取得具競爭力成果。
+          </div>
+          <div class="tags" style="margin-bottom:8px;">
+            <span class="tag">Segmentation</span><span class="tag">Multi-Agent</span>
+            <span class="tag">Vibe Coding</span><span class="tag">CT Imaging</span>
+          </div>
+          <a class="project-link" href="https://github.com/BMS410Wind/AICUP2025-CT-Heart" target="_blank">
+            🔗 github.com/BMS410Wind/AICUP2025-CT-Heart
+          </a>
+        </div>
+
+        <div class="project-card" style="border-left-color:#9c27b0;">
+          <div class="project-title">碩士論文 — 超音波脂肪肝 NAS 檢測</div>
+          <div class="project-desc">
+            利用神經架構搜尋（NAS）結合強化學習，最佳化深度學習模型架構，
+            成功降低 70% 參數量並提升分類效能，應用於超音波脂肪肝早期偵測。
+          </div>
+          <div class="tags">
+            <span class="tag">NAS</span><span class="tag">Reinforcement Learning</span>
+            <span class="tag">Ultrasound</span><span class="tag">Medical AI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Training -->
+      <div class="section">
+        <div class="section-title">培訓經歷</div>
+        <div class="card">
+          <div class="timeline-item">
+            <div class="timeline-title">群聯 × 交大 AI 架構師培訓計畫</div>
+            <div class="timeline-sub" style="margin-bottom:8px;">Phison × NYCU AI Architect Program</div>
+            <ul style="font-size:.88rem;color:#444;padding-left:16px;line-height:1.8;">
+              <li>生成式 AI 理論與應用：Prompt Engineering、RAG、MCP、n8n</li>
+              <li>Python & Vibe Coding：多 AI Agent 架構開發</li>
+              <li>CCNA & 計算機系統管理 SA：Linux、Docker 基礎實作</li>
+              <li>取得 <strong>Microsoft AI-900</strong> 證照</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer style="text-align:center;padding:24px 0 8px;color:var(--muted);font-size:.82rem;">
+    <p>Hong-Kun Lin · windspeak122@gmail.com · 0979-257-668</p>
+    <p style="margin-top:4px;">Built with Claude Code · 2025</p>
+  </footer>
+
+</main>
+</body>
+</html>
