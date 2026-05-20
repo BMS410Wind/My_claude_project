@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hong-Kun Lin | AI Engineer CV</title>
+  <style>
+    :root {
+      --ink: #1a1a1a;
+      --sub: #444;
+      --muted: #777;
+      --accent: #0057b8;
+      --accent-light: #e8f0fb;
+      --border: #d8dde6;
+      --bg: #f5f7fa;
+      --card: #fff;
+      --green: #0a7c60;
+      --green-bg: #e6f4f1;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 14.5px;
+      line-height: 1.6;
+    }
+
+    /* ── Page wrapper ── */
+    .page {
+      max-width: 860px;
+      margin: 32px auto;
+      background: var(--card);
+      box-shadow: 0 4px 24px rgba(0,0,0,.10);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    /* ── Header ── */
+    header {
+      padding: 44px 52px 32px;
+      border-bottom: 3px solid var(--accent);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: start;
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: .01em;
+      color: var(--ink);
+      font-family: 'Segoe UI', sans-serif;
+    }
+    header .title-line {
+      font-size: 1rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-top: 4px;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    header .tagline {
+      font-size: .88rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 6px;
+    }
+    .contact-block {
+      text-align: right;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: .83rem;
+      color: var(--sub);
+      line-height: 1.9;
+    }
+    .contact-block a { color: var(--accent); text-decoration: none; }
+    .contact-block a:hover { text-decoration: underline; }
+
+    /* ── Body ── */
+    .body { padding: 32px 52px 44px; }
+
+    /* ── Section ── */
+    .section { margin-bottom: 30px; }
+    .section-title {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: var(--accent);
+      border-bottom: 1.5px solid var(--border);
+      padding-bottom: 5px;
+      margin-bottom: 16px;
+    }
+
+    /* ── Summary ── */
+    .summary p {
+      font-size: .92rem;
+      color: var(--sub);
+      line-height: 1.75;
+    }
+
+    /* ── Entry (education / experience) ── */
+    .entry { margin-bottom: 18px; }
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .entry-org {
+      font-family: 'Segoe UI', sans-serif;
+      font-weight: 700;
+      font-size: .97rem;
+      color: var(--ink);
+    }
+    .entry-date {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: .8rem;
+      color: var(--muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .entry-role {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: .88rem;
+      color: var(--sub);
+      margin: 2px 0 8px;
+    }
+    .entry-role em { font-style: normal; color: var(--accent); font-weight: 600; }
+
+    ul.bullets {
+      padding-left: 18px;
+      font-size: .88rem;
+      color: var(--sub);
+      line-height: 1.7;
+    }
+    ul.bullets li { margin-bottom: 4px; }
+    ul.bullets strong { color: var(--ink); }
+
+    /* ── Skills grid ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 6px 16px;
+      font-size: .87rem;
+    }
+    .skills-grid .sk-label {
+      font-family: 'Segoe UI', sans-serif;
+      font-weight: 700;
+      color: var(--ink);
+      padding-top: 1px;
+    }
+    .skills-grid .sk-value { color: var(--sub); }
+
+    /* ── Tags ── */
+    .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+    .tag {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: .76rem;
+      padding: 2px 9px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      color: var(--sub);
+    }
+    .tag.hl { background: var(--accent-light); border-color: #b3c9f0; color: var(--accent); font-weight: 600; }
+    .tag.gr { background: var(--green-bg); border-color: #a8d5c8; color: var(--green); }
+
+    /* ── Award pill ── */
+    .award {
+      display: inline-block;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: .75rem;
+      font-weight: 700;
+      background: #fff8e1;
+      border: 1px solid #f9a825;
+      color: #7a5c00;
+      padding: 2px 10px;
+      border-radius: 3px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .award.silver { background: #eceff1; border-color: #90a4ae; color: #37474f; }
+
+    /* ── Publication ── */
+    .pub {
+      font-size: .86rem;
+      color: var(--sub);
+      margin-bottom: 10px;
+      padding-left: 14px;
+      border-left: 2px solid var(--border);
+      line-height: 1.65;
+    }
+    .pub .pub-title { color: var(--ink); font-weight: 600; }
+    .pub .pub-venue { color: var(--accent); }
+    .pub a { color: var(--accent); font-size: .8rem; text-decoration: none; }
+    .pub a:hover { text-decoration: underline; }
+
+    /* ── Two-col layout ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 36px; }
+
+    /* ── Divider ── */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+
+    /* ── Print ── */
+    @media print {
+      body { background: #fff; }
+      .page { box-shadow: none; margin: 0; border-radius: 0; }
+      .body { padding: 24px 48px 36px; }
+      header { padding: 36px 48px 24px; }
+    }
+
+    @media (max-width: 640px) {
+      header { grid-template-columns: 1fr; }
+      .contact-block { text-align: left; }
+      .body, header { padding-left: 24px; padding-right: 24px; }
+      .two-col { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ═══ HEADER ═══ -->
+  <header>
+    <div>
+      <h1>Hong-Kun Lin</h1>
+      <div class="title-line">AI Engineer &nbsp;·&nbsp; Deep Learning &nbsp;·&nbsp; LLM / RAG Systems</div>
+      <div class="tagline">"Move Fast and Break Things"</div>
+    </div>
+    <div class="contact-block">
+      <div><a href="mailto:windspeak122@gmail.com">windspeak122@gmail.com</a></div>
+      <div>+886 979-257-668</div>
+      <div>Kaohsiung, Taiwan &nbsp;(Open to relocation)</div>
+      <div><a href="https://github.com/BMS410Wind" target="_blank">github.com/BMS410Wind</a></div>
+    </div>
+  </header>
+
+  <div class="body">
+
+    <!-- ═══ SUMMARY ═══ -->
+    <div class="section summary">
+      <div class="section-title">Profile</div>
+      <p>
+        M.S. graduate in Biomedical Engineering from National Yang Ming Chiao Tung University (NYCU), specializing in
+        <strong>deep learning model optimization</strong> and <strong>LLM / RAG system development</strong>.
+        Thesis work applied Neural Architecture Search with reinforcement learning to ultrasound fatty liver detection,
+        achieving a <strong>70% reduction in model parameters</strong> while improving classification performance.
+        Proven record across international conferences, AI competitions, and cross-functional research environments.
+        Eager to apply model optimization and generative-AI expertise to real-world products in a fast-moving team.
+      </p>
+    </div>
+
+    <!-- ═══ SKILLS ═══ -->
+    <div class="section">
+      <div class="section-title">Technical Skills</div>
+      <div class="skills-grid">
+        <span class="sk-label">Languages</span>
+        <span class="sk-value">Python (primary), Bash</span>
+
+        <span class="sk-label">ML / DL</span>
+        <span class="sk-value">PyTorch, TensorFlow, OpenCV, Hugging Face Transformers, NAS, CNN, Transformer, YOLO, SAM3, Mask R-CNN</span>
+
+        <span class="sk-label">LLM / GenAI</span>
+        <span class="sk-value">RAG pipelines, Prompt Engineering, MCP, n8n, Ollama, vLLM, Multi-agent architectures</span>
+
+        <span class="sk-label">MLOps / Infra</span>
+        <span class="sk-value">Docker, Conda, Linux, Git / GitHub / GitLab, Azure, Roboflow</span>
+
+        <span class="sk-label">Research</span>
+        <span class="sk-value">Medical image analysis (ultrasound, CT, fMRI), physiological signal processing, model compression</span>
+      </div>
+    </div>
+
+    <!-- ═══ RESEARCH & PROJECTS ═══ -->
+    <div class="section">
+      <div class="section-title">Research &amp; Project Experience</div>
+
+      <!-- Thesis -->
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-org">M.S. Thesis — NAS-Optimized Fatty Liver Detection</span>
+          <span class="entry-date">Sep 2022 – Feb 2025</span>
+        </div>
+        <div class="entry-role">National Yang Ming Chiao Tung University &nbsp;·&nbsp; <em>First Author / Lead Researcher</em></div>
+        <ul class="bullets">
+          <li>Applied <strong>Neural Architecture Search with Reinforcement Learning (NASRL)</strong> to automatically discover optimal CNN architectures for ultrasound-based fatty liver classification.</li>
+          <li>Achieved a <strong>70% reduction in trainable parameters</strong> while statistically improving classification performance over baseline models.</li>
+          <li>Managed cross-hospital dataset integration, preprocessing pipelines, and full model development lifecycle independently.</li>
+          <li>Results presented at 2024 IABME Annual Conference — <span class="award">🥇 Excellent Award, Best Oral Competition</span></li>
+        </ul>
+      </div>
+
+      <hr class="divider"/>
+
+      <!-- Travel Assistant -->
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-org">Travel Itinerary Planning Assistant</span>
+          <span class="entry-date">2024 – 2025</span>
+        </div>
+        <div class="entry-role">Phison × NYCU AI Architect Program &nbsp;·&nbsp; <em>Individual Project</em></div>
+        <ul class="bullets">
+          <li>Built an end-to-end LLM application integrating LINE, Google Calendar, Google Maps, OpenWeather, Gmail, and a RAG knowledge base via <strong>n8n multi-agent orchestration</strong>.</li>
+          <li>Implemented automated itinerary planning, weather queries, expense tracking, calendar sync, and continuous knowledge-base refresh.</li>
+          <li>Demonstrated ability to translate emerging LLM techniques (RAG, MCP, Prompt Engineering) into a fully deployed product.</li>
+        </ul>
+        <div class="tags" style="margin-top:8px;">
+          <span class="tag hl">RAG</span><span class="tag hl">Multi-Agent</span><span class="tag hl">n8n</span>
+          <span class="tag">LLM</span><span class="tag">Google APIs</span><span class="tag">Automation</span>
+        </div>
+        <div style="margin-top:8px;font-size:.82rem;">
+          <a href="https://github.com/BMS410Wind/n8n-tools" target="_blank">→ github.com/BMS410Wind/n8n-tools</a>
+        </div>
+      </div>
+
+      <hr class="divider"/>
+
+      <!-- AI CUP -->
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-org">2025 AI CUP — CT Heart Muscle Segmentation</span>
+          <span class="entry-date">2025</span>
+        </div>
+        <div class="entry-role">Competition &nbsp;·&nbsp; <em>Lead Developer</em></div>
+        <ul class="bullets">
+          <li>Designed a <strong>four-agent pipeline</strong> (Preprocessing, Segmentation, Postprocessing, Reporting) using Vibe Coding methodology to semi-automate the competition workflow.</li>
+          <li>Achieved competitive results on CT cardiac segmentation benchmark, demonstrating practical multi-agent architecture design skills.</li>
+        </ul>
+        <div class="tags" style="margin-top:8px;">
+          <span class="tag hl">Segmentation</span><span class="tag hl">Multi-Agent</span>
+          <span class="tag">CT Imaging</span><span class="tag">PyTorch</span>
+        </div>
+        <div style="margin-top:8px;font-size:.82rem;">
+          <a href="https://github.com/BMS410Wind/AICUP2025-CT-Heart" target="_blank">→ github.com/BMS410Wind/AICUP2025-CT-Heart</a>
+        </div>
+      </div>
+
+      <hr class="divider"/>
+
+      <!-- IEEE IUS -->
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-org">IEEE IUS 2024 — Carpal Tunnel Syndrome Detection</span>
+          <span class="entry-date">Apr – Sep 2024</span>
+        </div>
+        <div class="entry-role">International Conference &nbsp;·&nbsp; <em>First Author</em></div>
+        <ul class="bullets">
+          <li>Proposed Bias Field Correction and Multi-Frame Concatenation preprocessing for ultrasound data quality improvement.</li>
+          <li>Developed Mask R-CNN + CBAM architecture for simultaneous median nerve segmentation and CTS classification.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══ PUBLICATIONS ═══ -->
+    <div class="section">
+      <div class="section-title">Selected Publications</div>
+
+      <div class="pub">
+        <span class="pub-title">Advancing Emotional State Recognition Using Multi-Task Learning with Dual CNN-LSTM</span><br/>
+        <span class="pub-venue">ICBHI 2024</span> &nbsp;· Co-author &nbsp;<span class="award silver">Honorable Mention</span><br/>
+        <a href="https://doi.org/10.1007/978-3-031-86323-3_48" target="_blank">doi.org/10.1007/978-3-031-86323-3_48</a>
+      </div>
+
+      <div class="pub">
+        <span class="pub-title">Predicting Emotions Using Channel Attention Mechanism on fMRI Signal Data</span><br/>
+        <span class="pub-venue">ICBHI 2024</span> &nbsp;· First author<br/>
+        <a href="https://doi.org/10.1007/978-3-031-86323-3_46" target="_blank">doi.org/10.1007/978-3-031-86323-3_46</a>
+      </div>
+
+      <div style="font-size:.82rem;color:var(--muted);margin-top:6px;">
+        Full paper list &amp; certificates: <a href="https://github.com/BMS410Wind/My-Conference-paper-andcertificate" target="_blank" style="color:var(--accent);">github.com/BMS410Wind/My-Conference-paper-andcertificate</a>
+      </div>
+    </div>
+
+    <!-- ═══ EDUCATION ═══ -->
+    <div class="section">
+      <div class="section-title">Education</div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-org">National Yang Ming Chiao Tung University (NYCU)</span>
+          <span class="entry-date">Sep 2022 – Feb 2025</span>
+        </div>
+        <div class="entry-role">M.S., Institute of Intelligent Bioelectrical Engineering &nbsp;·&nbsp; <em>Thesis: NAS-based Ultrasound Fatty Liver Detection</em></div>
+      </div>
+
+      <div class="entry" style="margin-bottom:0;">
+        <div class="entry-header">
+          <span class="entry-org">National United University</span>
+          <span class="entry-date">Sep 2018 – Jun 2022</span>
+        </div>
+        <div class="entry-role">B.S., Department of Electrical Engineering &nbsp;·&nbsp; <em>Capstone: Deep Learning for Multiple Myeloma Detection</em> <span class="award" style="font-size:.72rem;">🥇 1st Place, Software Division</span></div>
+      </div>
+    </div>
+
+    <!-- ═══ CERTIFICATIONS & TRAINING ═══ -->
+    <div class="section">
+      <div class="section-title">Certifications &amp; Training</div>
+      <div class="two-col">
+        <div>
+          <div class="entry">
+            <div class="entry-org" style="font-size:.92rem;">Microsoft Azure AI Fundamentals (AI-900)</div>
+            <div class="entry-role">Issued Dec 2025 &nbsp;·&nbsp; Microsoft</div>
+          </div>
+        </div>
+        <div>
+          <div class="entry">
+            <div class="entry-org" style="font-size:.92rem;">Phison × NYCU AI Architect Program</div>
+            <div class="entry-role">LLM / RAG / MCP / n8n &nbsp;·&nbsp; CCNA fundamentals &nbsp;·&nbsp; Linux &amp; Docker system admin</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ ADDITIONAL ═══ -->
+    <div class="section">
+      <div class="section-title">Additional</div>
+      <div class="skills-grid">
+        <span class="sk-label">Languages</span>
+        <span class="sk-value">Mandarin Chinese (native) &nbsp;·&nbsp; English (professional working proficiency)</span>
+        <span class="sk-label">Teaching</span>
+        <span class="sk-value">Served as AI instructor — course design, curriculum development, and student delivery</span>
+        <span class="sk-label">Availability</span>
+        <span class="sk-value">Available within one week of offer &nbsp;·&nbsp; Open to on-site / hybrid</span>
+      </div>
+    </div>
+
+  </div><!-- /body -->
+</div><!-- /page -->
+</body>
+</html>
